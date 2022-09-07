@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Django + SocketIO Test</title>
+    <body>
+    <div id="container">
+        <canvas id="canvasOutput"></canvas>
+        <video autoplay="true" id="videoElement"></video>
+    </div>
+    
+    <div class = 'video'>
+        <img id="image">
+    </div>
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<!-- {% comment %} <script src="https://cdn.socket.io/socket.io-2.0.1.min.js"></script> {% endcomment %} -->
+<script src="https://docs.opencv.org/3.4.0/opencv.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script> -->
+    <script type="text/javascript" charset="utf-8">
+        var socket = io();
+
+        console.log(socket.connected)
+        socket.on('connect', function(){
+            console.log("socket---", socket)
+            console.log("Connected...!", socket.connected)
+        });
+
+        socket.emit('my_event', "how r u");
+
+
+        console.log("oooooo")
+        socket.on('my_response', function(image){
+            console.log("---image---", image)
+        });
+    </script>
+</body>
+</html>
